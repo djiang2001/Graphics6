@@ -28,6 +28,18 @@ void add_polygon( struct matrix *polygons,
                   double x0, double y0, double z0, 
                   double x1, double y1, double z1, 
                   double x2, double y2, double z2 ) {
+   if ( points->lastcol < 3 ) {
+   printf("Need at least 3 points to draw a polygon!\n");
+   return;
+ }
+ 
+ int point;
+ for (point=0; point < points->lastcol-1; point+=3)
+   draw_line( polygons->m[0][point],
+	      polygons->m[1][point],
+	      polygons->m[0][point+1],
+	      polygons->m[1][point+1],
+	      s, c);
 }
 
 /*======== void draw_polygons() ==========
